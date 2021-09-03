@@ -31,7 +31,7 @@ if database == "" and hostname == "":
     proc = Popen(f"tnsping {database}", stdout=PIPE, encoding='utf8')
     out,err = proc.communicate()
 
-    if out.find('TNS-03505'):
+    if out.find('TNS-03505') > 0:
         print("Database not found via TNSPING. Please double check database name.")
         exit()
 
@@ -50,10 +50,10 @@ if database == "" and hostname == "":
         proc = Popen(f"tnsping {database}", stdout=PIPE, encoding='utf8')
         out,err = proc.communicate()
         
-        if out.find(hostname):
+        if out.find(hostname) > 0:
             configFile.write(f"{database}@{hostname}\n")
             print(f"Connection successful. Registration complete.")
-            answer = input("Would you like to connect now? Y/n") or 'y'
+            answer = input("Would you like to connect now? Y/n ") or 'y'
 
             if answer.lower() == 'n':
                 exit()
