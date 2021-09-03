@@ -10,7 +10,7 @@ args = parser.parse_args()
 configFileName = 'stored_databases.cfg'
 print()
 
-with open(configFileName, 'r') as configFile:
+with open(configFileName, 'a+') as configFile:
     database=""
     hostname=""
     # If database not found, ask to add it along with the host name
